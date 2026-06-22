@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation | Alex & Tea</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <p class="overline">You are invited</p>
+        <h1>Alex & Tea</h1>
+        <p id="guestGreeting" class="subtitle" hidden></p>
+        <p class="subtitle">Together with their families, invite you to celebrate their wedding</p>
+        <p id="weddingDateText" class="date">September 4, 5, 6, 2026</p>
+        <p class="place">Georgia, Tbilisi</p>
+      </section>
+
+      <section class="details">
+        <h2>Wedding Details</h2>
+        <div id="weddingDetailsContent"></div>
+      </section>
+
+      <section class="venue-map">
+        <h2>Wedding Venue on Google Maps</h2>
+        <div class="venue-media">
+          <div
+            id="mapWidget"
+            class="map-widget"
+            data-place-query="Best Villa in Tbilisi and Small Wedding venue Shindisi Residence"
+            data-lat="41.6593144"
+            data-lng="44.7641561"
+            data-zoom="16"
+          ></div>
+          <img
+            class="venue-photo"
+            src="best-villa.jpg"
+            alt="Shindisi Residence venue photo"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section class="countdown-block">
+        <h2>Countdown to Our Day</h2>
+        <p id="countdown">Loading countdown...</p>
+      </section>
+
+      <section id="rsvp" class="rsvp">
+        <h2>Répondez s'il vous plaît</h2>
+        <p>Please be sure to complete a short survey.</p>
+        <button id="rsvpButton" class="button">Attendance survey</button>
+      </section>
+    </main>
+
+    <script src="map-widget.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
