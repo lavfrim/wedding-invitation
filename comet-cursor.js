@@ -1,5 +1,4 @@
 (() => {
-  if (window.matchMedia("(pointer: coarse)").matches) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const canvas = document.createElement("canvas");
@@ -21,9 +20,13 @@
   let pointerY = 0;
   let hasPointer = false;
   let lastMoveAt = 0;
+  let touchFireworkUntil = 0;
+  let lastTouchFireworkAt = 0;
   const particles = [];
-  const maxParticles = 80;
+  const maxParticles = 220;
   const movementWindowMs = 800;
+  const touchFireworkDurationMs = 800;
+  const touchFireworkIntervalMs = 80;
 
   function resizeCanvas() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -41,7 +44,9 @@
       vx: (Math.random() - 0.5) * 1.3,
       vy: (Math.random() - 0.5) * 1.3,
       life: 1,
+      decay: 0.02,
       radius: 1.5 + Math.random() * 2.5,
+      color: "183, 110, 121",
     });
 
     if (particles.length > maxParticles) {
@@ -49,11 +54,34 @@
     }
   }
 
+  function spawnFirework(x, y) {
+    const count = 12 + Math.floor(Math.random() * 8);
+    for (let i = 0; i < count; i += 1) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.2 + Math.random() * 2.4;
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: 0.014 + Math.random() * 0.01,
+        radius: 1.2 + Math.random() * 2.6,
+        color: Math.random() > 0.5 ? "255, 214, 122" : "183, 110, 121",
+      });
+    }
+
+    if (particles.length > maxParticles) {
+      particles.splice(0, particles.length - maxParticles);
+    }
+  }
+
   function draw() {
     const now = performance.now();
     const isMoving = hasPointer && now - lastMoveAt <= movementWindowMs;
+    const hasTouchFireworks = now <= touchFireworkUntil;
 
-    if (!isMoving && particles.length) {
+    if (!isMoving && !hasTouchFireworks && particles.length) {
       particles.length = 0;
     }
 
@@ -63,7 +91,7 @@
       const particle = particles[i];
       particle.x += particle.vx;
       particle.y += particle.vy;
-      particle.life -= 0.02;
+      particle.life -= particle.decay;
       particle.radius *= 0.985;
 
       if (particle.life <= 0 || particle.radius < 0.2) {
@@ -73,7 +101,7 @@
 
       const alpha = Math.max(particle.life, 0);
       context.beginPath();
-      context.fillStyle = `rgba(183, 110, 121, ${alpha})`;
+      context.fillStyle = `rgba(${particle.color}, ${alpha})`;
       context.shadowColor = "rgba(255, 210, 170, 0.75)";
       context.shadowBlur = 14;
       context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
@@ -83,6 +111,11 @@
     if (isMoving) {
       spawnParticle();
       spawnParticle();
+    }
+
+    if (hasTouchFireworks && now - lastTouchFireworkAt >= touchFireworkIntervalMs) {
+      lastTouchFireworkAt = now;
+      spawnFirework(pointerX, pointerY);
     }
 
     requestAnimationFrame(draw);
@@ -99,6 +132,49 @@
     hasPointer = false;
     particles.length = 0;
   });
+  window.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      pointerX = touch.clientX;
+      pointerY = touch.clientY;
+      hasPointer = true;
+      lastMoveAt = performance.now();
+      touchFireworkUntil = lastMoveAt + touchFireworkDurationMs;
+      spawnFirework(pointerX, pointerY);
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "touchmove",
+    (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      pointerX = touch.clientX;
+      pointerY = touch.clientY;
+      hasPointer = true;
+      lastMoveAt = performance.now();
+      touchFireworkUntil = lastMoveAt + touchFireworkDurationMs;
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "touchend",
+    () => {
+      hasPointer = false;
+      touchFireworkUntil = performance.now() + touchFireworkDurationMs;
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "touchcancel",
+    () => {
+      hasPointer = false;
+      touchFireworkUntil = performance.now() + touchFireworkDurationMs;
+    },
+    { passive: true },
+  );
 
   resizeCanvas();
   draw();
