@@ -3,6 +3,7 @@ const rsvpButton = document.getElementById("rsvpButton");
 const guestGreetingEl = document.getElementById("guestGreeting");
 const weddingDateTextEl = document.getElementById("weddingDateText");
 const weddingDetailsContentEl = document.getElementById("weddingDetailsContent");
+const firstMainSectionEl = document.querySelector("main.container section");
 
 const weddingScheduleByGuestType = {
   external: {
@@ -111,11 +112,51 @@ function updateCountdown(targetDate) {
   countdownEl.textContent = `${days} days, ${hours} hours, ${minutes} minutes`;
 }
 
+function parseCssTimeToMilliseconds(value) {
+  if (!value) return 0;
+  const firstValue = value.split(",")[0].trim();
+  if (firstValue.endsWith("ms")) return Number.parseFloat(firstValue) || 0;
+  if (firstValue.endsWith("s")) return (Number.parseFloat(firstValue) || 0) * 1000;
+  return 0;
+}
+
+function unlockScrollOnMainSectionsAppearance() {
+  const unlock = () => document.body.classList.remove("scroll-locked");
+
+  if (!firstMainSectionEl) {
+    unlock();
+    return;
+  }
+
+  const firstSectionComputedStyle = window.getComputedStyle(firstMainSectionEl);
+  const hasRevealAnimation =
+    firstSectionComputedStyle.animationName !== "none" &&
+    parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDuration) > 0;
+
+  if (!hasRevealAnimation) {
+    unlock();
+    return;
+  }
+
+  firstMainSectionEl.addEventListener(
+    "animationstart",
+    (event) => {
+      if (event.animationName === "section-fade-in") unlock();
+    },
+    { once: true },
+  );
+
+  const animationDelayMs = parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDelay);
+  window.setTimeout(unlock, animationDelayMs + 1500);
+}
+
 if (rsvpButton) {
   rsvpButton.addEventListener("click", () => {
     window.open("https://forms.gle/3wYWRsX3L1CcrxXWA", "_blank", "noopener,noreferrer");
   });
 }
+
+unlockScrollOnMainSectionsAppearance();
 
 updateGuestGreeting();
 

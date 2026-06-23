@@ -17,6 +17,12 @@ body {
   line-height: 1.5;
 }
 
+body.scroll-locked {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 .container {
   max-width: 760px;
   margin: 0 auto;
