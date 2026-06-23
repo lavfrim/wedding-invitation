@@ -4,6 +4,8 @@ const guestGreetingEl = document.getElementById("guestGreeting");
 const weddingDateTextEl = document.getElementById("weddingDateText");
 const weddingDetailsContentEl = document.getElementById("weddingDetailsContent");
 const firstMainSectionEl = document.querySelector("main.container section");
+const OPENING_AWAIT_CONFIRMATION_CLASS = "opening-await-confirmation";
+const OPENING_START_EVENT = "opening:start";
 
 const weddingScheduleByGuestType = {
   external: {
@@ -133,31 +135,40 @@ function unlockScrollOnMainSectionsAppearance() {
     });
   };
 
-  if (!firstMainSectionEl) {
-    unlock();
+  const startUnlockTracking = () => {
+    if (!firstMainSectionEl) {
+      unlock();
+      return;
+    }
+
+    const firstSectionComputedStyle = window.getComputedStyle(firstMainSectionEl);
+    const hasRevealAnimation =
+      firstSectionComputedStyle.animationName !== "none" &&
+      parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDuration) > 0;
+
+    if (!hasRevealAnimation) {
+      unlock();
+      return;
+    }
+
+    firstMainSectionEl.addEventListener(
+      "animationstart",
+      (event) => {
+        if (event.animationName === "section-fade-in") unlock();
+      },
+      { once: true },
+    );
+
+    const animationDelayMs = parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDelay);
+    window.setTimeout(unlock, animationDelayMs + 1500);
+  };
+
+  if (document.documentElement.classList.contains(OPENING_AWAIT_CONFIRMATION_CLASS)) {
+    window.addEventListener(OPENING_START_EVENT, startUnlockTracking, { once: true });
     return;
   }
 
-  const firstSectionComputedStyle = window.getComputedStyle(firstMainSectionEl);
-  const hasRevealAnimation =
-    firstSectionComputedStyle.animationName !== "none" &&
-    parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDuration) > 0;
-
-  if (!hasRevealAnimation) {
-    unlock();
-    return;
-  }
-
-  firstMainSectionEl.addEventListener(
-    "animationstart",
-    (event) => {
-      if (event.animationName === "section-fade-in") unlock();
-    },
-    { once: true },
-  );
-
-  const animationDelayMs = parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDelay);
-  window.setTimeout(unlock, animationDelayMs + 1500);
+  startUnlockTracking();
 }
 
 if (rsvpButton) {
