@@ -1,6 +1,8 @@
 html.opening-await-confirmation .opening-crawl,
 html.opening-await-confirmation #titlecontent,
 html.opening-await-confirmation .ship-animation,
+html.opening-await-confirmation .ship-animation::before,
+html.opening-await-confirmation .ship-animation::after,
 html.opening-await-confirmation .star-kata-animation,
 html.opening-await-confirmation section {
   animation-play-state: paused;
