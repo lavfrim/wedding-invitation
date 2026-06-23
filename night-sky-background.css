@@ -22,7 +22,7 @@ body::before {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   mix-blend-mode: screen;
-  filter: blur(0.2px) brightness(3.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.95));
+  filter: blur(0.2px) brightness(3.4) drop-shadow(0 0 5px rgba(120, 200, 255, 0.95));
   animation: twinkle-single 5000ms linear infinite;
 }
 
