@@ -1,7 +1,7 @@
 :root {
   --bg: #f9f5f0;
   --text: #3f2f2f;
-  --accent: #b76e79;
+  --accent: #ff6;
   --card: #ffffff;
 }
 
@@ -38,11 +38,13 @@ html.opening-skipped body.scroll-locked {
 }
 
 section {
-  background: var(--card);
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   border-radius: 14px;
   padding: 24px;
   margin-bottom: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(255, 255, 102, 0.18);
   opacity: 0;
   transform: translateY(14px);
   animation: section-fade-in 900ms ease 33s forwards;
@@ -88,12 +90,12 @@ h2 {
 
 .button {
   display: inline-block;
-  border: 0;
+  border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 12px 20px;
   margin-top: 10px;
-  background: var(--accent);
-  color: #fff;
+  background: #000;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 700;
   cursor: pointer;
@@ -110,11 +112,11 @@ h2 {
   right: 16px;
   bottom: 16px;
   z-index: 200;
-  border: 0;
+  border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 10px 16px;
-  background: var(--accent);
-  color: #fff;
+  background: #000;
+  color: var(--accent);
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);

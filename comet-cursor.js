@@ -46,7 +46,7 @@
       life: 1,
       decay: 0.02,
       radius: 1.5 + Math.random() * 2.5,
-      color: "183, 110, 121",
+      color: "255, 255, 102",
     });
 
     if (particles.length > maxParticles) {
@@ -67,7 +67,7 @@
         life: 1,
         decay: 0.014 + Math.random() * 0.01,
         radius: 1.2 + Math.random() * 2.6,
-        color: Math.random() > 0.5 ? "255, 214, 122" : "183, 110, 121",
+        color: "255, 255, 102",
       });
     }
 
