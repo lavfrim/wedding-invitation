@@ -1,0 +1,57 @@
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #000;
+  background-image: radial-gradient(circle at 50% 30%, #05080f 0%, #000 70%);
+  overflow-x: hidden;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  opacity: 0.75;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 90px 120px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 150px 40px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 220px 170px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 270px 80px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 320px 30px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 360px 140px, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 430px 200px, #fff 50%, transparent 100%);
+  background-size: 460px 240px;
+  animation: stars-drift 220s linear infinite;
+}
+
+body::after {
+  opacity: 0.95;
+  background-image:
+    radial-gradient(1.8px 1.8px at 40px 45px, #fff 60%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 190px 95px, #fff 60%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 340px 20px, #fff 60%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 500px 150px, #fff 60%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 620px 70px, #fff 60%, transparent 100%);
+  background-size: 680px 220px;
+  animation: stars-drift 140s linear infinite reverse;
+}
+
+@keyframes stars-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-220px);
+  }
+}
