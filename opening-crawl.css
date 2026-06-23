@@ -14,11 +14,15 @@ body {
   font-weight: 700;
   color: #ff6;
   animation: crawl-overlay 72s ease forwards;
-  line-height: 96px;
+  line-height: 72px;
 }
 
 .opening-crawl p {
-  padding-bottom: 20rem;
+  padding-bottom: 96px;
+}
+
+p.opening-crawl-padding {
+  padding-bottom: 360px;
 }
 
 #titles {
