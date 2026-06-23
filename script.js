@@ -121,7 +121,13 @@ function parseCssTimeToMilliseconds(value) {
 }
 
 function unlockScrollOnMainSectionsAppearance() {
-  const unlock = () => document.body.classList.remove("scroll-locked");
+  const unlock = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.body.classList.remove("scroll-locked");
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+  };
 
   if (!firstMainSectionEl) {
     unlock();
