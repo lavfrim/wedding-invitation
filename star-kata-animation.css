@@ -14,21 +14,21 @@
   }
 
   25% {
-    height: 350px;
+    height: 250px;
     bottom: 55%;
     left: 55%;
-    opacity: 0.5;
+    opacity: 1;
   }
 
   40% {
-    height: 350px;
+    height: 250px;
     bottom: 55%;
     left: 55%;
-    opacity: 0.5;
+    opacity: 1;
   }
 
-  55% {
-    height: 350px;
+  45% {
+    height: 250px;
     bottom: 55%;
     left: 55%;
     opacity: 0;
