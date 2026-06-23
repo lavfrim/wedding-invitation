@@ -21,7 +21,7 @@ const weddingScheduleByGuestType = {
         <li>midday — ceremony (formal part)</li>
         <li>evening — feast and party</li>
       </ul>
-      <p><strong>September 6, Sunday, <em>Friends party</em>:</strong></p>
+      <p><strong>September 6, Sunday, <em>Party day</em>:</strong></p>
       <ul>
         <li>morning — hangover workout</li>
         <li>midday — barbecue, pool, sauna, music, and bar</li>
@@ -38,7 +38,7 @@ const weddingScheduleByGuestType = {
         <li>midday — ceremony (formal part)</li>
         <li>evening — feast and events</li>
       </ul>
-      <p><strong>September 6, Sunday, <em>Friends party</em>:</strong></p>
+      <p><strong>September 6, Sunday, <em>Party day</em>:</strong></p>
       <ul>
         <li>morning — hangover workout</li>
         <li>midday — barbecue, pool, music, and bar</li>

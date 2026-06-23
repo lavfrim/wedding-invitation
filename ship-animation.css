@@ -94,3 +94,8 @@
   animation: shipZigzag 8s ease-in-out 15s 1 forwards;
   z-index: 5;
 }
+
+html.opening-skipped .ship-animation {
+  animation: none;
+  display: none;
+}

@@ -70,3 +70,8 @@
   pointer-events: none;
   overflow: hidden;
 }
+
+html.opening-skipped .star-kata-animation {
+  animation: none;
+  display: none;
+}

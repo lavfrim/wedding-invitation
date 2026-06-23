@@ -1,0 +1,61 @@
+html.opening-await-confirmation .opening-crawl,
+html.opening-await-confirmation #titlecontent,
+html.opening-await-confirmation .ship-animation,
+html.opening-await-confirmation .star-kata-animation,
+html.opening-await-confirmation section {
+  animation-play-state: paused;
+}
+
+.mobile-opening-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.mobile-opening-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.76);
+}
+
+.mobile-opening-modal__content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  border-radius: 14px;
+  padding: 20px 16px;
+  background: #ffffff;
+  color: #3f2f2f;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.mobile-opening-modal__content h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.mobile-opening-modal__content p {
+  margin: 0 0 16px;
+}
+
+.mobile-opening-modal__continue {
+  margin-block-start: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #b76e79;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .mobile-opening-modal {
+    display: none;
+  }
+}

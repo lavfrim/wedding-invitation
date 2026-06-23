@@ -37,7 +37,7 @@ p.opening-crawl-padding {
   text-align: justify;
   overflow: hidden;
   transform-origin: 50% 100%;
-  transform: perspective(500px) rotateX(45deg) scale(1.5);
+  transform: perspective(500px) rotateX(45deg) scale(1.7);
 }
 
 #titles::after {
@@ -100,4 +100,13 @@ p.opening-crawl-padding {
   .opening-crawl {
     opacity: 0;
   }
+}
+
+html.opening-skipped .opening-crawl,
+html.opening-skipped #titlecontent {
+  animation: none;
+}
+
+html.opening-skipped .opening-crawl {
+  display: none;
 }
