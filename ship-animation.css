@@ -81,6 +81,12 @@
   }
 }
 
+@keyframes ship-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 .ship-animation {
   opacity: 0;
   width: 150px;
@@ -98,4 +104,8 @@
 html.opening-skipped .ship-animation {
   animation: none;
   display: none;
+}
+
+html.opening-fade-out .ship-animation {
+  animation: ship-fade-out 600ms ease 150ms forwards;
 }

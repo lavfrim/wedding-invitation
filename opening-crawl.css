@@ -84,6 +84,12 @@ p.opening-crawl-padding {
   }
 }
 
+@keyframes crawl-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 700px) {
   #titles {
     width: 16em;
@@ -109,4 +115,8 @@ html.opening-skipped #titlecontent {
 
 html.opening-skipped .opening-crawl {
   display: none;
+}
+
+html.opening-fade-out .opening-crawl {
+  animation: crawl-fade-out 600ms ease 150ms forwards;
 }

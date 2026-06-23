@@ -121,7 +121,11 @@ function parseCssTimeToMilliseconds(value) {
 }
 
 function unlockScrollOnMainSectionsAppearance() {
+  let isUnlocked = false;
   const unlock = () => {
+    if (isUnlocked) return;
+    isUnlocked = true;
+    document.documentElement.classList.add("opening-fade-out");
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.body.classList.remove("scroll-locked");
     window.requestAnimationFrame(() => {

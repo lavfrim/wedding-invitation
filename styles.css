@@ -38,7 +38,7 @@ html.opening-skipped body.scroll-locked {
 }
 
 section {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--accent);
   color: var(--accent);
   border-radius: 14px;

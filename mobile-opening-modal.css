@@ -26,11 +26,12 @@ html.opening-await-confirmation section {
   position: relative;
   z-index: 1;
   width: min(100%, 420px);
+  border: 1px solid #ff6;
   border-radius: 14px;
   padding: 20px 16px;
-  background: #ffffff;
-  color: #3f2f2f;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.92);
+  color: #ff6;
+  box-shadow: 0 10px 32px rgba(255, 255, 102, 0.2);
   text-align: center;
 }
 

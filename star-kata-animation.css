@@ -54,6 +54,12 @@
   }
 }
 
+@keyframes star-kata-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 .star-kata-animation {
   transform: translate(-65px, -60px);
   opacity: 0;
@@ -74,4 +80,8 @@
 html.opening-skipped .star-kata-animation {
   animation: none;
   display: none;
+}
+
+html.opening-fade-out .star-kata-animation {
+  animation: star-kata-fade-out 600ms ease 150ms forwards;
 }
