@@ -23,6 +23,8 @@
   let touchFireworkUntil = 0;
   let lastTouchFireworkAt = 0;
   const particles = [];
+  const trailColors = ["255, 255, 102", "255, 255, 255", "120, 200, 255"];
+  const fireworkColors = ["255, 255, 102", "255, 255, 255", "120, 200, 255"];
   const maxParticles = 220;
   const movementWindowMs = 800;
   const touchFireworkDurationMs = 800;
@@ -38,6 +40,7 @@
   }
 
   function spawnParticle() {
+    const color = trailColors[Math.floor(Math.random() * trailColors.length)];
     particles.push({
       x: pointerX,
       y: pointerY,
@@ -46,7 +49,7 @@
       life: 1,
       decay: 0.02,
       radius: 1.5 + Math.random() * 2.5,
-      color: "255, 255, 102",
+      color,
     });
 
     if (particles.length > maxParticles) {
@@ -59,6 +62,7 @@
     for (let i = 0; i < count; i += 1) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 1.2 + Math.random() * 2.4;
+      const color = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
       particles.push({
         x,
         y,
@@ -67,7 +71,7 @@
         life: 1,
         decay: 0.014 + Math.random() * 0.01,
         radius: 1.2 + Math.random() * 2.6,
-        color: "255, 255, 102",
+        color,
       });
     }
 
