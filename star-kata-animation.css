@@ -1,0 +1,72 @@
+@keyframes starKataZoomIn {
+  0% {
+    bottom: 90%;
+    left: 90%;
+    opacity: 0;
+    height: 1px;
+  }
+
+  23% {
+    bottom: 90%;
+    left: 90%;
+    opacity: 0;
+    height: 350px;
+  }
+
+  25% {
+    height: 350px;
+    bottom: 55%;
+    left: 55%;
+    opacity: 0.5;
+  }
+
+  40% {
+    height: 350px;
+    bottom: 55%;
+    left: 55%;
+    opacity: 0.5;
+  }
+
+  55% {
+    height: 350px;
+    bottom: 55%;
+    left: 55%;
+    opacity: 0;
+  }
+
+  75% {
+    height: 350px;
+    bottom: 52%;
+    left: 52%;
+    opacity: 0;
+  }
+
+  90% {
+    height: 350px;
+    bottom: 50%;
+    left: 50%;
+  }
+
+  100% {
+    bottom: 50%;
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+.star-kata-animation {
+  transform: translate(-65px, -60px);
+  opacity: 0;
+  width: auto;
+  height: 350px;
+  aspect-ratio: 16 / 9;
+  position: fixed;
+  background-image: url("star-kata.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  animation: starKataZoomIn 10s ease-in-out 15s 1 forwards;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}

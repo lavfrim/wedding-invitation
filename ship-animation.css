@@ -5,7 +5,6 @@
     bottom: -10%;
     right: 110%;
     width: 1px;
-    height: 1px;
     opacity: 1;
     transform: scaleX(-1);
   }
@@ -14,7 +13,6 @@
     bottom: 50px;
     right: 50px;
     width: 75px;
-    height: 75px;
     transform: scaleX(-1);
   }
 
@@ -22,7 +20,6 @@
     bottom: 50px;
     right: 50px;
     width: 75px;
-    height: 75px;
     transform: scaleX(-1);
   }
 
@@ -30,7 +27,6 @@
     bottom: 50px;
     right: 50px;
     width: 75px;
-    height: 75px;
     transform: scaleX(1);
   }
 
@@ -38,7 +34,6 @@
     bottom: 50px;
     right: 50px;
     width: 75px;
-    height: 75px;
     transform: scaleX(1);
   }
 
@@ -46,7 +41,6 @@
     bottom: 30%;
     right: calc(95% - 100px);
     width: 100px;
-    height: 100px;
     transform: scaleX(1);
   }
 
@@ -54,7 +48,6 @@
     bottom: 30%;
     right: calc(95% - 100px);
     width: 100px;
-    height: 100px;
     transform: scaleX(1);
   }
 
@@ -62,41 +55,42 @@
     bottom: 30%;
     right: calc(95% - 100px);
     width: 100px;
-    height: 100px;
     transform: scaleX(-1);
   }
 
-  40% {
+  50% {
     bottom: 30%;
     right: calc(95% - 100px);
     width: 100px;
-    height: 100px;
     transform: scaleX(-1);
   }
 
-  55% {
-    bottom: 45%;
-    right: 45%;
+  65% {
+    bottom: 50%;
+    right: 50%;
     width: 150px;
-    height: 150px;
     transform: scaleX(-1);
   }
 
   100% {
-    bottom: 45%;
-    right: 45%;
+    bottom: 50%;
+    right: 50%;
     width: 150px;
-    height: 150px;
     transform: scaleX(-1);
+    opacity: 1;
   }
 }
 
 .ship-animation {
+  opacity: 0;
+  width: 150px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   position: fixed;
   background-image: url('ship.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  animation: shipZigzag 8s ease-in-out 1s 1 forwards;
+  animation: shipZigzag 8s ease-in-out 15s 1 forwards;
   z-index: 5;
 }
