@@ -92,12 +92,12 @@ h2 {
 
 .button {
   display: inline-block;
-  border: 1px solid var(--accent);
+  border: 1px solid #78c8ff;
   border-radius: 999px;
   padding: 12px 20px;
   margin-top: 10px;
   background: #000;
-  color: var(--accent);
+  color: #78c8ff;
   text-decoration: none;
   font-weight: 700;
   cursor: pointer;
@@ -114,11 +114,11 @@ h2 {
   right: 16px;
   bottom: 16px;
   z-index: 200;
-  border: 1px solid var(--accent);
+  border: 1px solid #78c8ff;
   border-radius: 999px;
   padding: 10px 16px;
   background: #000;
-  color: var(--accent);
+  color: #78c8ff;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
