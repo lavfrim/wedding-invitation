@@ -17,12 +17,14 @@ body {
   line-height: 1.5;
 }
 
+html.scroll-locked,
 body.scroll-locked {
   overflow: hidden;
   overscroll-behavior: none;
   touch-action: none;
 }
 
+html.opening-skipped.scroll-locked,
 html.opening-skipped body.scroll-locked {
   overflow: auto;
   overscroll-behavior: auto;

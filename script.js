@@ -129,6 +129,7 @@ function unlockScrollOnMainSectionsAppearance() {
     isUnlocked = true;
     document.documentElement.classList.add("opening-fade-out");
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.classList.remove("scroll-locked");
     document.body.classList.remove("scroll-locked");
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });

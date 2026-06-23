@@ -42,6 +42,7 @@
     document.documentElement.classList.toggle(OPENING_SKIPPED_CLASS, showed);
 
     if (document.body && showed) {
+      document.documentElement.classList.remove("scroll-locked");
       document.body.classList.remove("scroll-locked");
     }
   }
