@@ -1,0 +1,102 @@
+/* Ship Animation - Zigzag movement from bottom-right to top-left */
+
+@keyframes shipZigzag {
+  0% {
+    bottom: -10%;
+    right: 110%;
+    width: 1px;
+    height: 1px;
+    opacity: 1;
+    transform: scaleX(-1);
+  }
+  
+  5% {
+    bottom: 50px;
+    right: 50px;
+    width: 75px;
+    height: 75px;
+    transform: scaleX(-1);
+  }
+
+  10% {
+    bottom: 50px;
+    right: 50px;
+    width: 75px;
+    height: 75px;
+    transform: scaleX(-1);
+  }
+
+  11% {
+    bottom: 50px;
+    right: 50px;
+    width: 75px;
+    height: 75px;
+    transform: scaleX(1);
+  }
+
+  15% {
+    bottom: 50px;
+    right: 50px;
+    width: 75px;
+    height: 75px;
+    transform: scaleX(1);
+  }
+
+  25% {
+    bottom: 30%;
+    right: calc(95% - 100px);
+    width: 100px;
+    height: 100px;
+    transform: scaleX(1);
+  }
+
+  35% {
+    bottom: 30%;
+    right: calc(95% - 100px);
+    width: 100px;
+    height: 100px;
+    transform: scaleX(1);
+  }
+
+  36% {
+    bottom: 30%;
+    right: calc(95% - 100px);
+    width: 100px;
+    height: 100px;
+    transform: scaleX(-1);
+  }
+
+  40% {
+    bottom: 30%;
+    right: calc(95% - 100px);
+    width: 100px;
+    height: 100px;
+    transform: scaleX(-1);
+  }
+
+  55% {
+    bottom: 45%;
+    right: 45%;
+    width: 150px;
+    height: 150px;
+    transform: scaleX(-1);
+  }
+
+  100% {
+    bottom: 45%;
+    right: 45%;
+    width: 150px;
+    height: 150px;
+    transform: scaleX(-1);
+  }
+}
+
+.ship-animation {
+  position: fixed;
+  background-image: url('ship.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: shipZigzag 8s ease-in-out 1s 1 forwards;
+  z-index: 5;
+}
