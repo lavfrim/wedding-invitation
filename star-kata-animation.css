@@ -1,3 +1,8 @@
+:root {
+  --star-kata-delay: 15s;
+  --star-kata-duration: 10s;
+}
+
 @keyframes starKataZoomIn {
   0% {
     bottom: 90%;
@@ -71,7 +76,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  animation: starKataZoomIn 10s ease-in-out 15s 1 forwards;
+  animation: starKataZoomIn var(--star-kata-duration) ease-in-out var(--star-kata-delay) 1 forwards;
   z-index: 5;
   pointer-events: none;
   overflow: hidden;
