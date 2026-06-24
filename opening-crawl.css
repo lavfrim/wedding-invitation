@@ -97,6 +97,44 @@ p.opening-crawl-padding {
   }
 }
 
+@media (max-width: 1200px) {
+  .opening-crawl {
+    line-height: calc(96px * 2 / 3);
+  }
+
+  .opening-crawl p {
+    padding-bottom: calc(296px * 2 / 3);
+  }
+
+  p.opening-crawl-padding {
+    padding-bottom: calc(560px * 2 / 3);
+  }
+}
+
+@media (max-width: 800px) {
+  .opening-crawl p {
+    padding-bottom: calc(296px / 2);
+  }
+
+  p.opening-crawl-padding {
+    padding-bottom: calc(560px / 2);
+  }
+}
+
+@media (max-width: 500px) {
+  .opening-crawl {
+    line-height: calc(96px * 3 / 5);
+  }
+
+  .opening-crawl p {
+    padding-bottom: calc(296px / 3);
+  }
+
+  p.opening-crawl-padding {
+    padding-bottom: calc(560px / 3);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .opening-crawl,
   #titlecontent {
