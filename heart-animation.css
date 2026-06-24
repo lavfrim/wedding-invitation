@@ -132,7 +132,7 @@
   background-size: contain;
   background-position: center;
   filter: drop-shadow(0 0 8px rgba(255, 120, 185, 0.85));
-  animation: heart-beat-sequence 7s ease-in-out calc(var(--star-kata-delay, 15s) + var(--star-kata-duration, 10s) * 0.92 + 2.05s) 1 forwards;
+  animation: heart-beat-sequence 7s ease-in-out calc(var(--star-kata-delay, 15s) + var(--star-kata-duration, 10s) * 0.92 + 2.07s) 1 forwards;
   z-index: 9;
   pointer-events: none;
 }
