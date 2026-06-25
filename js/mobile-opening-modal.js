@@ -1,6 +1,7 @@
 (() => {
   const OPENING_SHOWED_KEY = "opening_showed";
   const OPENING_AWAIT_CONFIRMATION_CLASS = "opening-await-confirmation";
+  const OPENING_START_EVENT = "opening:start";
   const MOBILE_BREAKPOINT_QUERY = "(max-width: 599px)";
   const MODAL_ID = "mobileOpeningModal";
 
@@ -25,11 +26,10 @@
       </div>
     `;
 
-    const continueButton = modal.querySelector(".mobile-opening-modal__continue");
-    continueButton.addEventListener("click", () => {
+    modal.querySelector(".mobile-opening-modal__continue").addEventListener("click", () => {
       document.documentElement.classList.remove(OPENING_AWAIT_CONFIRMATION_CLASS);
       modal.remove();
-      window.dispatchEvent(new Event("opening:start"));
+      window.dispatchEvent(new Event(OPENING_START_EVENT));
     });
 
     document.body.append(modal);

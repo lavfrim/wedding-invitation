@@ -2,16 +2,13 @@
   const OPENING_SHOWED_KEY = "opening_showed";
   const OPENING_SKIPPED_CLASS = "opening-skipped";
   const OPENING_AWAIT_CONFIRMATION_CLASS = "opening-await-confirmation";
-  const RESET_BUTTON_ID = "resetOpeningStateButton";
+  const OPENING_START_EVENT = "opening:start";
   const CRAWL_ANIMATION_NAME = "crawl-overlay";
+  const RESET_BUTTON_ID = "resetOpeningStateButton";
 
-  function parseCssTimeToMilliseconds(value) {
-    if (!value) return 0;
-    const firstValue = value.split(",")[0].trim();
-    if (firstValue.endsWith("ms")) return Number.parseFloat(firstValue) || 0;
-    if (firstValue.endsWith("s")) return (Number.parseFloat(firstValue) || 0) * 1000;
-    return 0;
-  }
+  // Fallback timeout in case animationend never fires (shorter than the full
+  // 72 s crawl so returning visitors see the opening as "already shown" early).
+  const OPENING_SHOWED_FALLBACK_MS = 30_000;
 
   function isOpeningShowed() {
     return window.localStorage.getItem(OPENING_SHOWED_KEY) === "true";
@@ -57,10 +54,9 @@
     }
 
     const openingCrawlStyle = window.getComputedStyle(openingCrawlEl);
-    const animationDurationMs = 30000;
     const animationDelayMs = parseCssTimeToMilliseconds(openingCrawlStyle.animationDelay);
 
-    if (openingCrawlStyle.animationName === "none" || animationDurationMs <= 0) {
+    if (openingCrawlStyle.animationName === "none") {
       setOpeningShowed(true);
       createResetOpeningButton();
       return;
@@ -77,14 +73,12 @@
     openingCrawlEl.addEventListener(
       "animationend",
       (event) => {
-        if (event.animationName === CRAWL_ANIMATION_NAME) {
-          markOpeningAsShowed();
-        }
+        if (event.animationName === CRAWL_ANIMATION_NAME) markOpeningAsShowed();
       },
       { once: true },
     );
 
-    window.setTimeout(markOpeningAsShowed, animationDelayMs + animationDurationMs + 400);
+    window.setTimeout(markOpeningAsShowed, animationDelayMs + OPENING_SHOWED_FALLBACK_MS + 400);
   }
 
   if (isOpeningShowed()) {
@@ -100,7 +94,7 @@
     }
 
     if (document.documentElement.classList.contains(OPENING_AWAIT_CONFIRMATION_CLASS)) {
-      window.addEventListener("opening:start", watchOpeningCompletion, { once: true });
+      window.addEventListener(OPENING_START_EVENT, watchOpeningCompletion, { once: true });
       return;
     }
 

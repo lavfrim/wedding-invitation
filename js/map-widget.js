@@ -1,6 +1,5 @@
-const mapContainer = document.getElementById("mapWidget");
-
-function initMapWidget() {
+(() => {
+  const mapContainer = document.getElementById("mapWidget");
   if (!mapContainer) return;
 
   const placeQuery = mapContainer.dataset.placeQuery || "";
@@ -21,6 +20,4 @@ function initMapWidget() {
   iframe.allowFullscreen = true;
 
   mapContainer.replaceChildren(iframe);
-}
-
-initMapWidget();
+})();

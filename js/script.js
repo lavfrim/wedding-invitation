@@ -1,9 +1,3 @@
-const countdownEl = document.getElementById("countdown");
-const rsvpButton = document.getElementById("rsvpButton");
-const guestGreetingEl = document.getElementById("guestGreeting");
-const weddingDateTextEl = document.getElementById("weddingDateText");
-const weddingDetailsContentEl = document.getElementById("weddingDetailsContent");
-const firstMainSectionEl = document.querySelector("main.container section");
 const OPENING_AWAIT_CONFIRMATION_CLASS = "opening-await-confirmation";
 const OPENING_START_EVENT = "opening:start";
 
@@ -77,53 +71,51 @@ function formatGuestNames(names) {
 
 function updateGuestGreeting() {
   const names = getGuestNamesFromUrl();
-
   if (!names.length) return;
 
-  guestGreetingEl.textContent = `Dear ${formatGuestNames(names)}, this invitation is for you.`;
-  guestGreetingEl.hidden = false;
+  const el = document.getElementById("guestGreeting");
+  if (!el) return;
+
+  el.textContent = `Dear ${formatGuestNames(names)}, this invitation is for you.`;
+  el.hidden = false;
 }
 
-function updateWeddingDateByGuestType(guestType) {
-  if (!weddingDateTextEl) return;
-  weddingDateTextEl.textContent = weddingScheduleByGuestType[guestType].label;
+function updateWeddingDate(guestType) {
+  const el = document.getElementById("weddingDateText");
+  if (el) el.textContent = weddingScheduleByGuestType[guestType].label;
 }
 
-function updateWeddingDetailsByGuestType(guestType) {
-  if (!weddingDetailsContentEl) return;
-  weddingDetailsContentEl.innerHTML = weddingScheduleByGuestType[guestType].detailsHtml;
+function updateWeddingDetails(guestType) {
+  const el = document.getElementById("weddingDetailsContent");
+  if (el) el.innerHTML = weddingScheduleByGuestType[guestType].detailsHtml;
 }
 
 function updateCountdown(targetDate) {
-  const now = new Date();
-  const diff = targetDate - now;
+  const el = document.getElementById("countdown");
+  if (!el) return;
+
+  const diff = targetDate - Date.now();
 
   if (diff <= 0) {
-    countdownEl.textContent = "Today is the day. We are getting married!";
+    el.textContent = "Today is the day. We are getting married!";
     return;
   }
 
-  const day = 1000 * 60 * 60 * 24;
-  const hour = 1000 * 60 * 60;
-  const minute = 1000 * 60;
+  const MS_PER_MINUTE = 60_000;
+  const MS_PER_HOUR = MS_PER_MINUTE * 60;
+  const MS_PER_DAY = MS_PER_HOUR * 24;
 
-  const days = Math.floor(diff / day);
-  const hours = Math.floor((diff % day) / hour);
-  const minutes = Math.floor((diff % hour) / minute);
+  const days = Math.floor(diff / MS_PER_DAY);
+  const hours = Math.floor((diff % MS_PER_DAY) / MS_PER_HOUR);
+  const minutes = Math.floor((diff % MS_PER_HOUR) / MS_PER_MINUTE);
 
-  countdownEl.textContent = `${days} days, ${hours} hours, ${minutes} minutes`;
-}
-
-function parseCssTimeToMilliseconds(value) {
-  if (!value) return 0;
-  const firstValue = value.split(",")[0].trim();
-  if (firstValue.endsWith("ms")) return Number.parseFloat(firstValue) || 0;
-  if (firstValue.endsWith("s")) return (Number.parseFloat(firstValue) || 0) * 1000;
-  return 0;
+  el.textContent = `${days} days, ${hours} hours, ${minutes} minutes`;
 }
 
 function unlockScrollOnMainSectionsAppearance() {
+  const firstMainSectionEl = document.querySelector("main.container section");
   let isUnlocked = false;
+
   const unlock = () => {
     if (isUnlocked) return;
     isUnlocked = true;
@@ -142,10 +134,10 @@ function unlockScrollOnMainSectionsAppearance() {
       return;
     }
 
-    const firstSectionComputedStyle = window.getComputedStyle(firstMainSectionEl);
+    const style = window.getComputedStyle(firstMainSectionEl);
     const hasRevealAnimation =
-      firstSectionComputedStyle.animationName !== "none" &&
-      parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDuration) > 0;
+      style.animationName !== "none" &&
+      parseCssTimeToMilliseconds(style.animationDuration) > 0;
 
     if (!hasRevealAnimation) {
       unlock();
@@ -160,7 +152,7 @@ function unlockScrollOnMainSectionsAppearance() {
       { once: true },
     );
 
-    const animationDelayMs = parseCssTimeToMilliseconds(firstSectionComputedStyle.animationDelay);
+    const animationDelayMs = parseCssTimeToMilliseconds(style.animationDelay);
     window.setTimeout(unlock, animationDelayMs + 1500);
   };
 
@@ -172,6 +164,7 @@ function unlockScrollOnMainSectionsAppearance() {
   startUnlockTracking();
 }
 
+const rsvpButton = document.getElementById("rsvpButton");
 if (rsvpButton) {
   rsvpButton.addEventListener("click", () => {
     window.open("https://forms.gle/3wYWRsX3L1CcrxXWA", "_blank", "noopener,noreferrer");
@@ -179,13 +172,12 @@ if (rsvpButton) {
 }
 
 unlockScrollOnMainSectionsAppearance();
-
 updateGuestGreeting();
 
 const guestType = getGuestTypeFromUrl();
 const targetWeddingDate = weddingScheduleByGuestType[guestType].countdownStartDate;
 
-updateWeddingDateByGuestType(guestType);
-updateWeddingDetailsByGuestType(guestType);
+updateWeddingDate(guestType);
+updateWeddingDetails(guestType);
 updateCountdown(targetWeddingDate);
-setInterval(() => updateCountdown(targetWeddingDate), 60000);
+setInterval(() => updateCountdown(targetWeddingDate), 60_000);
