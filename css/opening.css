@@ -296,7 +296,7 @@ html.opening-fade-out .opening-crawl {
   height: auto;
   aspect-ratio: 16 / 9;
   position: fixed;
-  background-image: url("../ship.png");
+  background-image: url("../assets/images/ship.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -386,7 +386,7 @@ html.opening-fade-out .ship-animation {
   position: fixed;
   right: calc(50% + 35px);
   bottom: calc(50% + 47px);
-  background-image: url("../galaxy-princes.png");
+  background-image: url("../assets/images/galaxy-princes.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -486,7 +486,7 @@ html.opening-fade-out .galaxy-princess-animation {
   height: 350px;
   aspect-ratio: 16 / 9;
   position: fixed;
-  background-image: url("../star-kata.png");
+  background-image: url("../assets/images/star-kata.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -636,7 +636,7 @@ html.opening-fade-out .star-kata-animation {
   height: 1px;
   transform: translate(calc(-50% - 37px), calc(-50% - 110px)) scale(1);
   opacity: 0;
-  background-image: url("../heart.svg");
+  background-image: url("../assets/images/heart.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
