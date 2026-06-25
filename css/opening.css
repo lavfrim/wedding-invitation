@@ -44,6 +44,10 @@ p.opening-crawl-padding {
   padding-bottom: 560px;
 }
 
+p.opening-crawl-last-row {
+  text-align: center;
+}
+
 #titles {
   position: absolute;
   width: 18em;
