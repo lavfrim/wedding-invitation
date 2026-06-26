@@ -74,10 +74,14 @@ function updateGuestGreeting() {
   if (!names.length) return;
 
   const el = document.getElementById("guestGreeting");
-  if (!el) return;
+  const invitationText = document.getElementById("invitationText");
+  if (!el || !invitationText) return;
 
-  el.textContent = `Dear ${formatGuestNames(names)}, this invitation is for you.`;
+  el.innerHTML = `Dear <span class="guest-names">${formatGuestNames(names)}</span>,`;
   el.hidden = false;
+
+  invitationText.innerHTML =
+    "Together with our families, we are delighted to<br/>invite you to celebrate our wedding";
 }
 
 function updateWeddingDate(guestType) {
