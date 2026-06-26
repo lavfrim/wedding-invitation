@@ -1,6 +1,36 @@
 const OPENING_AWAIT_CONFIRMATION_CLASS = "opening-await-confirmation";
 const OPENING_START_EVENT = "opening:start";
 
+const STORAGE_GUEST_TYPE_KEY = "guest_type";
+const STORAGE_GUEST_NAMES_KEY = "guest_names";
+
+function initializeGuestDataFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const hasQueryParams = params.toString().length > 0;
+
+  if (!hasQueryParams) return;
+
+  const guestType = params.get("guestType");
+  if (guestType) {
+    window.localStorage.setItem(STORAGE_GUEST_TYPE_KEY, guestType);
+  }
+
+  const guestValues = params.getAll("guest");
+  const guestsValues = params.getAll("guests").flatMap((value) => value.split(","));
+  const nameValue = params.get("name");
+
+  const allNames = [...guestValues, ...guestsValues, nameValue || ""]
+    .map((name) => name.trim())
+    .filter(Boolean);
+
+  if (allNames.length > 0) {
+    const uniqueNames = [...new Set(allNames)];
+    window.localStorage.setItem(STORAGE_GUEST_NAMES_KEY, JSON.stringify(uniqueNames));
+  }
+
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 const weddingScheduleByGuestType = {
   external: {
     label: "September 4, 5, 6, 2026",
@@ -45,12 +75,26 @@ const weddingScheduleByGuestType = {
 };
 
 function getGuestTypeFromUrl() {
+  const stored = window.localStorage.getItem(STORAGE_GUEST_TYPE_KEY);
+  if (stored) {
+    return stored === "internal" ? "internal" : "external";
+  }
+
   const params = new URLSearchParams(window.location.search);
   const guestType = (params.get("guestType") || "").trim().toLowerCase();
   return guestType === "internal" ? "internal" : "external";
 }
 
 function getGuestNamesFromUrl() {
+  const stored = window.localStorage.getItem(STORAGE_GUEST_NAMES_KEY);
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  }
+
   const params = new URLSearchParams(window.location.search);
   const guestValues = params.getAll("guest");
   const guestsValues = params.getAll("guests").flatMap((value) => value.split(","));
@@ -174,6 +218,8 @@ if (rsvpButton) {
     window.open("https://forms.gle/3wYWRsX3L1CcrxXWA", "_blank", "noopener,noreferrer");
   });
 }
+
+initializeGuestDataFromUrl();
 
 unlockScrollOnMainSectionsAppearance();
 updateGuestGreeting();
