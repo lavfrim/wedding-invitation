@@ -6,22 +6,22 @@ const weddingScheduleByGuestType = {
     label: "September 4, 5, 6, 2026",
     countdownStartDate: new Date("2026-09-04T14:00:00"),
     detailsHtml: `
-      <p><strong>September 4, Friday, <em>Landing day</em>:</strong></p>
+      <p><strong>September 4 · Friday · Arrival Day</strong></p>
       <ul>
-        <li>arrival</li>
-        <li>meeting each other</li>
-        <li>enjoying the day</li>
+        <li>Land safely</li>
+        <li>Reunite with fellow travellers</li>
+        <li>Enjoy the day</li>
       </ul>
-      <p><strong>September 5, Saturday, <em>Ceremony day</em>:</strong></p>
+      <p><strong>September 5 · Saturday · Ceremony Day</strong></p>
       <ul>
-        <li>midday — ceremony (formal part)</li>
-        <li>evening — feast and party</li>
+        <li>Afternoon — The official mission: Wedding Ceremony</li>
+        <li>Evening — Feast, drinks, dancing, and celebration</li>
       </ul>
-      <p><strong>September 6, Sunday, <em>Party day</em>:</strong></p>
+      <p><strong>September 6 · Sunday · Party Day</strong></p>
       <ul>
-        <li>morning — hangover workout</li>
-        <li>midday — barbecue, pool, sauna, music, and bar</li>
-        <li>evening — even more</li>
+        <li>Morning — Hangover workout (optional, but encouraged! 😉)</li>
+        <li>Midday — Barbecue, pool, sauna, music, and open bar</li>
+        <li>Evening — Because one party is never enough...</li>
       </ul>
     `,
   },
@@ -29,16 +29,16 @@ const weddingScheduleByGuestType = {
     label: "September 5, 6, 2026",
     countdownStartDate: new Date("2026-09-05T14:00:00"),
     detailsHtml: `
-      <p><strong>September 5, Saturday, <em>Ceremony day</em>:</strong></p>
+      <p><strong>September 5 · Saturday · Ceremony Day</strong></p>
       <ul>
-        <li>midday — ceremony (formal part)</li>
-        <li>evening — feast and events</li>
+        <li>Afternoon — The official mission: Wedding Ceremony</li>
+        <li>Evening — Feast, drinks, dancing, and celebration</li>
       </ul>
-      <p><strong>September 6, Sunday, <em>Party day</em>:</strong></p>
+      <p><strong>September 6 · Sunday · Party Day</strong></p>
       <ul>
-        <li>morning — hangover workout</li>
-        <li>midday — barbecue, pool, music, and bar</li>
-        <li>evening — even more action</li>
+        <li>Morning — Hangover workout (optional, but encouraged! 😉)</li>
+        <li>Midday — Barbecue, pool, sauna, music, and open bar</li>
+        <li>Evening — Because one party is never enough...</li>
       </ul>
     `,
   },
